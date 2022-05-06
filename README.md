@@ -17,7 +17,7 @@ app.use(TripleStateSlider)
 `    <triple-state-slider :slides="sliderImages" />
 `
 
-###inside script:
+### inside script:
 
 ```js
 <script setup>
