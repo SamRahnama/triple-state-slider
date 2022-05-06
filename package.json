@@ -1,7 +1,7 @@
 {
   "name": "triple-state-slider",
   "private": false,
-  "version": "0.0.1",
+  "version": "0.0.2",
   "files": [
     "dist"
   ],
@@ -19,7 +19,7 @@
     "url": "https://github.com/SamRahnama"
   },
   "exports": {
-    "." : {
+    ".": {
       "import": "./dist/triple-state-slider.es.js",
       "require": "./dist/triple-state-slider.umd.js"
     },
