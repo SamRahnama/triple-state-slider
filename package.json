@@ -7,6 +7,17 @@
   ],
   "main": "./dist/triple-state-slider.umd.js",
   "module": "./dist/triple-state-slider.es.js",
+  "keywords": [
+    "triple state slider",
+    "vue slider",
+    "vuejs slider",
+    "vue triple state slider"
+  ],
+  "author": {
+    "email": "meysam.rah.97@gmail.com",
+    "name": "Sam Rahnama",
+    "url": "https://github.com/SamRahnama"
+  },
   "exports": {
     "." : {
       "import": "./dist/triple-state-slider.es.js",
