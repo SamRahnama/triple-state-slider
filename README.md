@@ -16,7 +16,9 @@ app.use(TripleStateSlider)
 ### inside template:
 `    <triple-state-slider :slides="sliderImages" />
 `
-###inside script:
+
+### inside script:
+
 ```js
 <script setup>
 
