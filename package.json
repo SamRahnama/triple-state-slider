@@ -18,6 +18,7 @@
     "name": "Sam Rahnama",
     "url": "https://github.com/SamRahnama"
   },
+  "license": "Apache-2.0",
   "exports": {
     ".": {
       "import": "./dist/triple-state-slider.es.js",
