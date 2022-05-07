@@ -9,7 +9,7 @@ well this is slider that shows three states: previous, current and next slides.
 `npm i @samrahnama/triple-state-slider`
 
 ### import slider component
-```vue
+```js
 import { createApp } from 'vue'
 import TripleStateSlider from '@samrahnama/triple-state-slider'
 import "@samrahnama/triple-state-slider/dist/main.css"
@@ -19,8 +19,9 @@ const app = createApp(App)
 app.use(TripleStateSlider)
 ```
 ### inside template:
-`    <triple-state-slider :slides="sliderImages" />
-`
+```vue
+    <triple-state-slider :slides="sliderImages" />
+```
 
 ### inside script:
 
