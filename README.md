@@ -1,13 +1,14 @@
 # vue triple state slider
 well this is slider that shows three states: previous, current and next slides.
 
-## usage
+### install via npm
+`npm i @samrahnama/triple-state-slider`
 
 ### import slider component
 ```vue
 import { createApp } from 'vue'
-import TripleStateSlider from 'triple-state-slider'
-import "triple-state-slider/dist/main.css"
+import TripleStateSlider from '@samrahnama/triple-state-slider'
+import "@samrahnama/triple-state-slider/dist/main.css"
 
 
 const app = createApp(App)
