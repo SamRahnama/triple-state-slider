@@ -18,6 +18,10 @@
     "name": "Sam Rahnama",
     "url": "https://github.com/SamRahnama"
   },
+  "repository": {
+    "url": "https://github.com/SamRahnama/triple-state-slider.git",
+    "type": "git"
+  },
   "license": "Apache-2.0",
   "exports": {
     ".": {
