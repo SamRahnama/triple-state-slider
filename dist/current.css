@@ -1,0 +1,38 @@
+.cs-next-move,
+.cs-next-enter-active,
+.cs-next-leave-active,
+.cs-previous-move,
+.cs-previous-enter-active,
+.cs-previous-leave-active {
+    transition: all 0.5s ease-in-out;
+}
+
+.cs-previous-leave-active,
+.cs-next-leave-active {
+    position: absolute;
+}
+
+.cs-previous-enter-from,
+.cs-previous-leave-to,
+.cs-next-enter-from,
+.cs-next-leave-to {
+
+}
+
+.cs-next-enter-from,
+.cs-previous-leave-to
+{
+    /*opacity: .1;*/
+    transform: translateX(calc(100% + 1em)) scaleY(0.8);
+    z-index: 2;
+}
+
+.cs-next-leave-to,
+.cs-previous-enter-from {
+    transform: translateX(calc(-100% - 1em)) scaleY(0.8);
+}
+
+
+.cs-previous-leave-to {
+    transform: translateX(100%) scaleY(0.8);
+}
