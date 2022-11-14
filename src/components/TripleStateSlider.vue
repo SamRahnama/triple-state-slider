@@ -87,7 +87,7 @@ export default {
     startSlideShow() {
       this.slideInterval = setInterval(() => {
         this.nextSlideFunc();
-      }, 5000);
+      }, this.interval);
     },
     stopSlideShow() {
       clearInterval(this.slideInterval);
