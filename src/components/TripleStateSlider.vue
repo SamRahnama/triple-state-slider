@@ -1,5 +1,85 @@
+<script setup lang="ts">
+import {computed, defineProps, onMounted, PropType, reactive, Ref, ref, withDefaults} from "vue";
+import Slide from "../types/Slide";
+
+const props = defineProps({
+  slides: {
+    type: Array as PropType<Slide[]>,
+    required: true
+  },
+  containerClass: {
+    type: String,
+  },
+  interval: {
+    type: Number,
+    default: 5000
+  },
+  infinite:{
+    type: Boolean,
+    default: true
+  }
+})
+
+let currentSlide = ref(0)
+let nextSlide = ref(0)
+
+const animationTypes = {
+  NEXT: 'slide-right',
+  PREVIOUS: 'slide-left'
+}
+let previousSlide = ref(-1)
+let slideInterval = setInterval(()=>{})
+let animationType = ref('slide-right')
+
+function nextSlideFunc() {
+  animationType.value = animationTypes.NEXT;
+  if (props.infinite) {
+    previousSlide.value = currentSlide.value;
+    currentSlide.value = nextSlide.value;
+    nextSlide.value = (nextSlide.value + 1) % props.slides.length;
+  } else {
+    if (nextSlide.value < props.slides.length) {
+      previousSlide.value = currentSlide.value;
+      currentSlide.value = nextSlide.value;
+      nextSlide.value = nextSlide.value + 1;
+    }
+  }
+}
+
+function previousSlideFunc() {
+  animationType.value = animationTypes.PREVIOUS;
+  // this.resetSlideShow()
+  if (props.infinite) {
+    nextSlide.value = currentSlide.value;
+    currentSlide.value = previousSlide.value;
+    previousSlide.value = (previousSlide.value - 1 + props.slides.length) % props.slides.length;
+  } else {
+    if (previousSlide.value >= 0) {
+      nextSlide.value = currentSlide.value;
+      currentSlide.value = previousSlide.value;
+      previousSlide.value = previousSlide.value - 1;
+    }
+  }
+}
+
+function startSlideShow() {
+  slideInterval = setInterval(nextSlideFunc, props.interval);
+}
+
+function stopSlideShow() {
+  clearInterval(slideInterval);
+}
+
+onMounted(() => {
+  startSlideShow()
+})
+const orderedSlides = computed(() => {
+  return props.slides.slice().sort((a, b) => a.order - b.order);
+})
+</script>
+
 <template>
-  <div :class="`triple-state-slider ${containerClass}`">
+  <div :class="`triple-state-slider ${props.containerClass}`">
     <transition-group v-if="previousSlide>=0" name="ps-next" appear>
       <div v-for="_ in [previousSlide]" :key="_" class="previous-slide-wrapper">
         <img :src="orderedSlides[previousSlide].image" :alt="orderedSlides[previousSlide].title">
@@ -19,90 +99,8 @@
     </transition-group>
   </div>
 </template>
-<script>
 
-export default {
-  name: 'tripleStateSlider',
-  props: {
-    slides: {
-      type: Array,
-      required: true
-    },
-    containerClass: {
-      type: String
-    },
-    interval: {
-      type: Number,
-      default: 5000
-    },
-    infinite: {
-      type: Boolean,
-      default: true
-    }
-  },
-  data() {
-    return {
-      currentSlide: 0,
-      nextSlide: 1,
-      animationTypes: {
-        NEXT: 'slide-right',
-        PREVIOUS: 'slide-left'
-      },
-      previousSlide: -1,
-      slideInterval: null,
-      animationType: 'slide-right',
-    }
-  },
-  methods: {
-    nextSlideFunc() {
-      this.animationType = this.animationTypes.NEXT;
-      // this.resetSlideShow();
-      if (this.infinite) {
-        this.previousSlide = this.currentSlide;
-        this.currentSlide = this.nextSlide;
-        this.nextSlide = (this.nextSlide + 1) % this.slides.length;
-      } else {
-        if (this.nextSlide < this.slides.length) {
-          this.previousSlide = this.currentSlide;
-          this.currentSlide = this.nextSlide;
-          this.nextSlide = this.nextSlide + 1;
-        }
-      }
-    },
-    previousSlideFunc() {
-      this.animationType = this.animationTypes.PREVIOUS;
-      // this.resetSlideShow()
-      if (this.infinite) {
-        this.nextSlide = this.currentSlide;
-        this.currentSlide = this.previousSlide;
-        this.previousSlide = (this.previousSlide - 1 + this.slides.length) % this.slides.length;
-      } else {
-        if (this.previousSlide >= 0) {
-          this.nextSlide = this.currentSlide;
-          this.currentSlide = this.previousSlide;
-          this.previousSlide = this.previousSlide - 1;
-        }
-      }
-    },
-    startSlideShow() {
-      this.slideInterval = setInterval(() => {
-        this.nextSlideFunc();
-      }, this.interval);
-    },
-    stopSlideShow() {
-      clearInterval(this.slideInterval);
-    },
-    resetSlideShow() {
-      this.stopSlideShow();
-    }
-  },
-  mounted() {
-    this.startSlideShow();
-  },
-  computed: {
-    orderedSlides() {
-      return this.slides.slice().sort((a, b) => a.order - b.order);
-    }
-  }
-}
-</script>
+<style scoped>
+
+</style>
+
