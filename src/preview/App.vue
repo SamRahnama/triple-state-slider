@@ -7,7 +7,7 @@
 <script setup lang="ts">
 import TripleStateSlider from "../../lib/TripleStateSlider.vue";
 import "../../dist/main.css"
-import Slide from "../types/Slide";
+import Slide from "../../lib/types/Slide";
 let slides: Slide[] = [
   {
     order: 1,
