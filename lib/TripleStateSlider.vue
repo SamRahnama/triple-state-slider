@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {computed, defineProps, onMounted, PropType, reactive, Ref, ref, withDefaults} from "vue";
-import Slide from "../types/Slide";
+import Slide from "../src/types/Slide";
 
 const props = defineProps({
   slides: {
