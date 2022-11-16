@@ -6,8 +6,8 @@ export default defineConfig({
     plugins: [vue()],
     build: {
         lib: {
-            entry: resolve(__dirname, 'src/main.ts'),
-            name: 'triple-state-slider',
+            entry: resolve(__dirname, 'lib/main.ts'),
+            name: 'TripleStateSlider',
             fileName: 'triple-state-slider',
         },
         rollupOptions: {
