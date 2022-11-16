@@ -13,6 +13,8 @@
     "vuejs slider",
     "vue triple state slider"
   ],
+  "types": "./dist/main.d.ts",
+  "type": "module",
   "author": {
     "email": "meysam.rah.97@gmail.com",
     "name": "Sam Rahnama",
