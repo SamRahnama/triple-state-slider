@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {computed, defineProps, onMounted, PropType, reactive, Ref, ref, withDefaults} from "vue";
+import {computed, defineProps, onMounted, PropType, ref} from "vue";
 import Slide from "./types/Slide";
 
 const props = defineProps({
@@ -21,13 +21,16 @@ const props = defineProps({
 })
 
 let currentSlide = ref(0)
-let nextSlide = ref(0)
+let nextSlide = ref(1)
 
 const animationTypes = {
   NEXT: 'slide-right',
   PREVIOUS: 'slide-left'
 }
-let previousSlide = ref(-1)
+const orderedSlides = computed(() => {
+  return props.slides.slice().sort((a, b) => a.order - b.order);
+})
+let previousSlide = ref((-1 + orderedSlides.value.length ) % orderedSlides.value.length)
 let slideInterval = setInterval(()=>{})
 let animationType = ref('slide-right')
 
@@ -73,14 +76,12 @@ function stopSlideShow() {
 onMounted(() => {
   startSlideShow()
 })
-const orderedSlides = computed(() => {
-  return props.slides.slice().sort((a, b) => a.order - b.order);
-})
+
 </script>
 
 <template>
   <div :class="`triple-state-slider ${props.containerClass}`">
-    <transition-group v-if="previousSlide>=0" name="ps-next" appear>
+    <transition-group  name="ps-next" appear>
       <div v-for="_ in [previousSlide]" :key="_" class="previous-slide-wrapper">
         <img :src="orderedSlides[previousSlide].image" :alt="orderedSlides[previousSlide].title">
       </div>
