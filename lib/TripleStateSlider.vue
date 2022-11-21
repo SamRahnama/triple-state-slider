@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import {computed, defineProps, onMounted, PropType, ref} from "vue";
+import {PropType} from "vue";
 import Slide from "./types/Slide";
+import {useSlide} from "./composables/slider";
 
 const props = defineProps({
   slides: {
@@ -19,64 +20,7 @@ const props = defineProps({
     default: true
   }
 })
-
-let currentSlide = ref(0)
-let nextSlide = ref(1)
-
-const animationTypes = {
-  NEXT: 'slide-right',
-  PREVIOUS: 'slide-left'
-}
-const orderedSlides = computed(() => {
-  return props.slides.slice().sort((a, b) => a.order - b.order);
-})
-let previousSlide = ref((-1 + orderedSlides.value.length ) % orderedSlides.value.length)
-let slideInterval = setInterval(()=>{})
-let animationType = ref('slide-right')
-
-function nextSlideFunc() {
-  animationType.value = animationTypes.NEXT;
-  if (props.infinite) {
-    previousSlide.value = currentSlide.value;
-    currentSlide.value = nextSlide.value;
-    nextSlide.value = (nextSlide.value + 1) % props.slides.length;
-  } else {
-    if (nextSlide.value < props.slides.length) {
-      previousSlide.value = currentSlide.value;
-      currentSlide.value = nextSlide.value;
-      nextSlide.value = nextSlide.value + 1;
-    }
-  }
-}
-
-function previousSlideFunc() {
-  animationType.value = animationTypes.PREVIOUS;
-  // this.resetSlideShow()
-  if (props.infinite) {
-    nextSlide.value = currentSlide.value;
-    currentSlide.value = previousSlide.value;
-    previousSlide.value = (previousSlide.value - 1 + props.slides.length) % props.slides.length;
-  } else {
-    if (previousSlide.value >= 0) {
-      nextSlide.value = currentSlide.value;
-      currentSlide.value = previousSlide.value;
-      previousSlide.value = previousSlide.value - 1;
-    }
-  }
-}
-
-function startSlideShow() {
-  slideInterval = setInterval(nextSlideFunc, props.interval);
-}
-
-function stopSlideShow() {
-  clearInterval(slideInterval);
-}
-
-onMounted(() => {
-  startSlideShow()
-})
-
+let {orderedSlides,nextSlide,currentSlide,previousSlide} = useSlide(props)
 </script>
 
 <template>
