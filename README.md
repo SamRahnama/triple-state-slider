@@ -1,16 +1,85 @@
-# Vue 3 + TypeScript + Vite
+[![build status](https://github.com/SamRahnama/triple-state-slider/actions/workflows/publish.yml/badge.svg)](https://github.com/SamRahnama/triple-state-slider/actions/workflows/publish.yml)
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+# vue triple state slider
 
-## Recommended IDE Setup
+well this is slider that shows three states: previous, current and next slides written in typescript .
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+### preview
 
-## Type Support For `.vue` Imports in TS
+![triple-state-slider-preview](https://user-images.githubusercontent.com/18219117/167255897-3a2b18aa-726e-4e59-881b-bcf09ec6f19c.gif)
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can enable Volar's Take Over mode by following these steps:
+### install via npm
 
-1. Run `Extensions: Show Built-in Extensions` from VS Code's command palette, look for `TypeScript and JavaScript Language Features`, then right click and select `Disable (Workspace)`. By default, Take Over mode will enable itself if the default TypeScript extension is disabled.
-2. Reload the VS Code window by running `Developer: Reload Window` from the command palette.
+`npm i @samrahnama/triple-state-slider`
 
-You can learn more about Take Over mode [here](https://github.com/johnsoncodehk/volar/discussions/471).
+### import slider component
+
+```ts
+import {createApp} from 'vue'
+import {TripleStateSlider} from '@samrahnama/triple-state-slider'
+import "@samrahnama/triple-state-slider/dist/main.css"
+
+
+const app = createApp(App)
+app.use(TripleStateSlider)
+```
+
+### inside template:
+
+```vue
+
+<triple-state-slider :slides="sliderImages"/>
+```
+
+### inside script:
+
+```vue
+<script setup lang="ts">
+import type Slide from "@samrahnama/triple-state-slider/dist/types/Slide";
+
+const sliderImages: Slide = [
+        {
+            order: 1,
+            image: 'https://picsum.photos/1280/720?random=1',
+            title: 'just a title',
+        },
+        {
+            order: 2,
+            image: 'https://picsum.photos/1280/720?random=2',
+            title: 'just a title',
+        },
+        {
+            order: 3,
+            image: 'https://picsum.photos/1280/720?random=3',
+            title: 'just a title',
+        },
+        {
+            order: 4,
+            image: 'https://picsum.photos/1280/720?random=4',
+            title: 'just a title',
+        },
+        {
+            order: 5,
+            image: 'https://picsum.photos/1280/720?random=5',
+            title: 'just a title',
+        },
+        {
+            order: 6,
+            image: 'https://picsum.photos/1280/720?random=6',
+            title: 'just a title',
+        },
+    ]
+    < /script>
+ ```
+
+### props
+
+| name           | required | type    | default | description                                                                                       |
+|----------------|:---------|:--------|---------|---------------------------------------------------------------------------------------------------|
+| slides         | yes      | array   | -       | the `slides` is an array of objects, the `image` property of object is the src of the each slide. |
+| interval       | no       | number  | 5000    | this is a timer for auto sliding, `default : 5000ms`                                              |
+| containerClass | no       | string  | -       | you can use this prop to set container class of slider.                                           |
+| showButtons(*  |          |         |         |                                                                                                   |
+| soon*)         | no       | boolean | false   | hides/shows next and previous buttons.                                                            |
+| infinite       | no       | boolean | true    | when its true slider doesn't stop.                                                                |
+
