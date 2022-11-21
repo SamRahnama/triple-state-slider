@@ -74,12 +74,11 @@ const sliderImages: Slide = [
 
 ### props
 
-| name           | required | type    | default | description                                                                                       |
-|----------------|:---------|:--------|---------|---------------------------------------------------------------------------------------------------|
-| slides         | yes      | array   | -       | the `slides` is an array of objects, the `image` property of object is the src of the each slide. |
-| interval       | no       | number  | 5000    | this is a timer for auto sliding, `default : 5000ms`                                              |
-| containerClass | no       | string  | -       | you can use this prop to set container class of slider.                                           |
-| showButtons(*  |          |         |         |                                                                                                   |
-| soon*)         | no       | boolean | false   | hides/shows next and previous buttons.                                                            |
-| infinite       | no       | boolean | true    | when its true slider doesn't stop.                                                                |
+| name                 | required | type    | default | description                                                                                       |
+|----------------------|:---------|:--------|---------|---------------------------------------------------------------------------------------------------|
+| slides               | yes      | array   | -       | the `slides` is an array of objects, the `image` property of object is the src of the each slide. |
+| interval             | no       | number  | 5000    | this is a timer for auto sliding, `default : 5000ms`                                              |
+| containerClass       | no       | string  | -       | you can use this prop to set container class of slider.                                           |
+| showButtons(* soon*) | no       | boolean | false   | hides/shows next and previous buttons.                                                            |
+| infinite             | no       | boolean | true    | when its true slider doesn't stop.                                                                |
 
