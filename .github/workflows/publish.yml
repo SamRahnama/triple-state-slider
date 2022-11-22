@@ -16,9 +16,11 @@ jobs:
         with:
           node-version: "16.x"
           registry-url: https://registry.npmjs.org
-      - name: build
-        run: npm run build
+      - name: install dependencies
+          run: npm install
+      - name: build 🔨
+          run: npm run build
       - name: 🚀 publish
-        run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: "${{ secrets.NPM_AUTH_TOKEN }}"
+          run: npm publish --access public
+      env:
+        NODE_AUTH_TOKEN: "${{ secrets.NPM_AUTH_TOKEN }}"
