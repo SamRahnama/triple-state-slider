@@ -21,7 +21,7 @@ import "@samrahnama/triple-state-slider/dist/main.css"
 
 
 const app = createApp(App)
-app.use(TripleStateSlider)
+app.component('Slider',TripleStateSlider)
 ```
 
 ### inside template:
