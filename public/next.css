@@ -5,6 +5,8 @@
 .ns-previous-enter-active,
 .ns-previous-leave-active {
     transition: all 0.5s ease-in-out;
+    z-index: 1;
+
 }
 
 .ns-previous-leave-active,
@@ -21,6 +23,12 @@
     transform: translateX(200%) scaleY(.6) !important;
 }
 
-.ns-next-leave-to{
+.ns-previous-enter-from {
+    transform: translateX(0%) scaleY(1) !important;
+}
+.ns-previous-leave-to{
+    transform:  translateX(calc(200%)) scaleY(.6) !important;
+}
+.ns-next-leave-to {
     display: none;
 }

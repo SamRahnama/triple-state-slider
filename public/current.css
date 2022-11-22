@@ -31,8 +31,3 @@
 .cs-previous-enter-from {
     transform: translateX(calc(-100% - 1em)) scaleY(0.8);
 }
-
-
-.cs-previous-leave-to {
-    transform: translateX(100%) scaleY(0.8);
-}

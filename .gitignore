@@ -21,4 +21,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-/public/
+/dist/*.*
+/dist
+/dist/
