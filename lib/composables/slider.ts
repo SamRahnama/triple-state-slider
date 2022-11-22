@@ -7,15 +7,15 @@ export function useSlide(props: any) {
     let nextSlide = ref(1)
 
     const animationTypes = {
-        NEXT: 'slide-right',
-        PREVIOUS: 'slide-left'
+        NEXT: '-next',
+        PREVIOUS: '-previous'
     }
     const orderedSlides = computed(() => {
         return props.slides.slice().sort((a:Slide, b:Slide) => a.order - b.order);
     })
     let previousSlide = ref((-1 + orderedSlides.value.length ) % orderedSlides.value.length)
     let slideInterval = setInterval(()=>{})
-    let animationType = ref('slide-right')
+    let animationType = ref('-next')
 
     function nextSlideFunc() {
         animationType.value = animationTypes.NEXT;
@@ -63,6 +63,9 @@ export function useSlide(props: any) {
         currentSlide,
         nextSlide,
         previousSlide,
-        orderedSlides
+        orderedSlides,
+        animationType,
+        previousSlideFunc,
+        nextSlideFunc
     }
 }

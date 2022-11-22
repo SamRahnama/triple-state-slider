@@ -29,6 +29,7 @@
     width: 100%;
     object-fit: cover;
     height: 100%;
+    cursor: pointer;
 }
 .triple-state-slider .current-slide-wrapper {
     position: absolute;
@@ -37,6 +38,7 @@
     left: 10%;
     right: 10%;
     overflow: hidden;
+    z-index: 2;
 }
 .triple-state-slider .current-slide-wrapper img {
     width: 100%;

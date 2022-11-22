@@ -18,8 +18,12 @@
 .ps-next-leave-to {
 
 }
-
-
+.ps-previous-enter-from{
+  transform: translateX(-200%) scaleY(.6) !important;
+}
+.ps-previous-leave-to {
+  transform: translateX(0) scaleY(1 ) !important;
+}
 .ps-next-leave-to{
   transform: translateX(-200%) scaleY(.6) !important;
 }
