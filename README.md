@@ -5,7 +5,7 @@
 well this is slider that shows three states: previous, current and next slides written in typescript .
 
 ### preview
-
+for helping to update this library after forking the repo, try to run ``npm run dev``.
 ![triple-state-slider-preview](https://user-images.githubusercontent.com/18219117/167255897-3a2b18aa-726e-4e59-881b-bcf09ec6f19c.gif)
 
 ### install via npm
