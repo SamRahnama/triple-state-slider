@@ -20,25 +20,25 @@ const props = defineProps({
     default: true
   }
 })
-let {orderedSlides,nextSlide,currentSlide,previousSlide} = useSlide(props)
+let {orderedSlides,nextSlide,currentSlide,previousSlide,animationType,previousSlideFunc, nextSlideFunc} = useSlide(props)
 </script>
 
 <template>
   <div :class="`triple-state-slider ${props.containerClass}`">
-    <transition-group  name="ps-next" appear>
-      <div v-for="_ in [previousSlide]" :key="_" class="previous-slide-wrapper">
+    <transition-group  :name="`ps${animationType}`" appear>
+      <div v-for="_ in [previousSlide]" :key="_" class="previous-slide-wrapper" @click="previousSlideFunc">
         <img :src="orderedSlides[previousSlide].image" :alt="orderedSlides[previousSlide].title">
       </div>
     </transition-group>
 
-    <transition-group name="cs-next">
+    <transition-group :name="`cs${animationType}`">
       <div v-for="_ in [currentSlide]" :key="_" class="current-slide-wrapper">
         <img :src="orderedSlides[currentSlide].image" :alt="orderedSlides[currentSlide].title">
       </div>
     </transition-group>
 
-    <transition-group v-if="nextSlide < slides.length" name="ns-next">
-      <div v-for="_ in [nextSlide]" :key="_" class="next-slide-wrapper">
+    <transition-group v-if="nextSlide < slides.length" :name="`ns${animationType}`">
+      <div v-for="_ in [nextSlide]" :key="_" class="next-slide-wrapper" @click="nextSlideFunc">
         <img :src="orderedSlides[nextSlide].image" :alt="orderedSlides[nextSlide].title">
       </div>
     </transition-group>
