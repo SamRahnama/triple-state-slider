@@ -2,7 +2,7 @@
 
 # vue triple state slider
 
-well this is slider that shows three states: previous, current and next slides.
+well this is slider that shows three states: previous, current and next slides written in typescript .
 
 ### preview
 
@@ -14,9 +14,9 @@ well this is slider that shows three states: previous, current and next slides.
 
 ### import slider component
 
-```js
+```ts
 import {createApp} from 'vue'
-import TripleStateSlider from '@samrahnama/triple-state-slider'
+import {TripleStateSlider} from '@samrahnama/triple-state-slider'
 import "@samrahnama/triple-state-slider/dist/main.css"
 
 
@@ -33,9 +33,11 @@ app.use(TripleStateSlider)
 
 ### inside script:
 
-```js
-<script setup>
-    const sliderImages = [
+```vue
+<script setup lang="ts">
+import type Slide from "@samrahnama/triple-state-slider/dist/types/Slide";
+
+const sliderImages: Slide = [
         {
             order: 1,
             image: 'https://picsum.photos/1280/720?random=1',
@@ -65,18 +67,18 @@ app.use(TripleStateSlider)
             order: 6,
             image: 'https://picsum.photos/1280/720?random=6',
             title: 'just a title',
-        }, 
+        },
     ]
-</script>
+    < /script>
  ```
 
 ### props
 
-| name                | required | type    | default | description                                                                                       |
-|---------------------|:---------|:--------|---------|---------------------------------------------------------------------------------------------------|
-| slides              | yes      | array   | -       | the `slides` is an array of objects, the `image` property of object is the src of the each slide. |
-| interval            | no       | number  | 5000    | this is a timer for auto sliding, `default : 5000ms`                                              |
-| containerClass      | no       | string  | -       | you can use this prop to set container class of slider.                                           |
-| showButtons(*soon*) | no       | boolean | false   | hides/shows next and previous buttons.                                                            |
-| infinite            | no       | boolean | true    | when its true slider doesn't stop.                                                                |
+| name                 | required | type    | default | description                                                                                       |
+|----------------------|:---------|:--------|---------|---------------------------------------------------------------------------------------------------|
+| slides               | yes      | array   | -       | the `slides` is an array of objects, the `image` property of object is the src of the each slide. |
+| interval             | no       | number  | 5000    | this is a timer for auto sliding, `default : 5000ms`                                              |
+| containerClass       | no       | string  | -       | you can use this prop to set container class of slider.                                           |
+| showButtons(* soon*) | no       | boolean | false   | hides/shows next and previous buttons.                                                            |
+| infinite             | no       | boolean | true    | when its true slider doesn't stop.                                                                |
 
