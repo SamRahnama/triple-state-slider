@@ -11,14 +11,16 @@ export function useSlide(props: any) {
         PREVIOUS: '-previous'
     }
     const orderedSlides = computed(() => {
-        return props.slides.slice().sort((a:Slide, b:Slide) => a.order - b.order);
+        return props.slides.slice().sort((a: Slide, b: Slide) => a.order - b.order);
     })
-    let previousSlide = ref((-1 + orderedSlides.value.length ) % orderedSlides.value.length)
-    let slideInterval = setInterval(()=>{})
+    let previousSlide = ref((-1 + orderedSlides.value.length) % orderedSlides.value.length)
+    let slideInterval = setInterval(() => {
+    })
     let animationType = ref('-next')
 
     function nextSlideFunc() {
         animationType.value = animationTypes.NEXT;
+        resetSlideshow()
         if (props.infinite) {
             previousSlide.value = currentSlide.value;
             currentSlide.value = nextSlide.value;
@@ -34,11 +36,11 @@ export function useSlide(props: any) {
 
     function previousSlideFunc() {
         animationType.value = animationTypes.PREVIOUS;
-        // this.resetSlideShow()
+        resetSlideshow()
         if (props.infinite) {
             nextSlide.value = currentSlide.value;
             currentSlide.value = previousSlide.value;
-            previousSlide.value = (previousSlide.value - 1 + props.slides.length) % props.slides.length;
+            previousSlide.value = ((previousSlide.value - 1) + props.slides.length) % props.slides.length;
         } else {
             if (previousSlide.value >= 0) {
                 nextSlide.value = currentSlide.value;
@@ -54,6 +56,11 @@ export function useSlide(props: any) {
 
     function stopSlideShow() {
         clearInterval(slideInterval);
+    }
+
+    function resetSlideshow() {
+        stopSlideShow()
+        startSlideShow()
     }
 
     onMounted(() => {
