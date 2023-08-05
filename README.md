@@ -1,5 +1,5 @@
 [![build status](https://github.com/SamRahnama/triple-state-slider/actions/workflows/publish.yml/badge.svg)](https://github.com/SamRahnama/triple-state-slider/actions/workflows/publish.yml)
-
+code coverage will be here soon!
 # vue triple state slider
 
 well this is slider that shows three states: previous, current and next slides written in typescript .
